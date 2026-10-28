@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <title>AthloMate mark - white</title>
+  <path d="M100,230 C60,180 20,140 20,95 A80,80 0 0 1 180,95 C180,140 140,180 100,230 Z" fill="#FFFFFF"/>
+  <path d="M100,52 L127,104 L73,96 Z" fill="#0B1220"/>
+  <path d="M73,114 L127,122 L100,198 Z" fill="#0B1220"/>
+  <path d="M73,96 L127,104 L127,122 L73,114 Z" fill="#10B981"/>
+</svg>
