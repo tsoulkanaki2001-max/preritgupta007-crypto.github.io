@@ -32,7 +32,7 @@
   50% { transform: rotate(1.5deg) translateY(-14px); }
 }
 .floating.a { animation: bob2 5s ease-in-out infinite; }
-.floating.b { animation: bob2 6s ease-in-out -2s infinite; }
+.floating.b { right: 60px; animation: bob2 6s ease-in-out -2s infinite; }
 @keyframes bob2 { 50% { transform: translateY(-10px); } }
 .tick { display: inline-block; min-width: 200px; }
 .tick.swap { animation: tickIn .5s ease; }
