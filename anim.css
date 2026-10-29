@@ -17,20 +17,15 @@
 }
 .reveal.in { opacity: 1; transform: none; }
 
-/* Hero glow orbs and parallax */
+/* Hero glow orbs */
 .hero .wrap { position: relative; z-index: 1; }
 .orb { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; will-change: transform; z-index: 0; }
 .orb.o1 { width: 340px; height: 340px; background: var(--blue); top: -80px; right: 8%; opacity: .45; animation: drift 14s ease-in-out infinite alternate; }
 .orb.o2 { width: 280px; height: 280px; background: var(--green); bottom: -100px; left: 4%; opacity: .28; animation: drift 18s ease-in-out infinite alternate-reverse; }
 @keyframes drift { to { transform: translate(60px, 40px) scale(1.15); } }
-.phone-wrap { transform: translateY(var(--py, 0px)); }
 
-/* Floating hero elements: kept in the empty sky area so they never cover the app buttons */
-.hero-shot { animation: bob 6s ease-in-out infinite; }
-@keyframes bob {
-  0%, 100% { transform: rotate(3deg) translateY(0); }
-  50% { transform: rotate(1.5deg) translateY(-14px); }
-}
+/* The hero photo stays completely still; only the small chips next to it float. */
+.hero-shot { animation: none; transform: rotate(3deg); }
 .floating { z-index: 2; }
 .floating.a { top: 70px; left: 0; animation: bob2 5s ease-in-out infinite; }
 .floating.b { top: 140px; bottom: auto; right: 30px; animation: bob2 6s ease-in-out -2s infinite; }
@@ -62,8 +57,8 @@
 .icon { transition: transform .3s ease; }
 .card:hover .icon { transform: scale(1.12) rotate(-6deg); }
 
-/* Screenshot tilt */
-.shot img { transition: transform .25s ease, box-shadow .35s ease; will-change: transform; }
+/* Screenshot tilt (step screenshots only) */
+.step .shot img { transition: transform .25s ease, box-shadow .35s ease; will-change: transform; }
 .step .shot img:hover { box-shadow: 0 34px 80px rgba(37, 99, 235, 0.35); }
 
 /* Button shine */
@@ -79,7 +74,7 @@
 .faq details[open] summary::after { transform: rotate(180deg); }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb, .hero-shot, .floating, .track, .dot, .tick { animation: none !important; }
+  .orb, .floating, .track, .dot, .tick { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .progress { display: none; }
 }

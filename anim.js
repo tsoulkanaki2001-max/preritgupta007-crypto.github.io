@@ -4,7 +4,7 @@
   var nav = document.querySelector(".nav");
   var hero = document.querySelector(".hero");
 
-  // Scroll progress bar, nav shadow and hero parallax
+  // Scroll progress bar and nav shadow
   var bar = document.createElement("div");
   bar.className = "progress";
   document.body.appendChild(bar);
@@ -17,7 +17,6 @@
       var max = h.scrollHeight - h.clientHeight;
       bar.style.transform = "scaleX(" + (max > 0 ? h.scrollTop / max : 0) + ")";
       nav.classList.toggle("scrolled", h.scrollTop > 10);
-      if (!reduce && hero) hero.style.setProperty("--py", Math.min(h.scrollTop * 0.08, 40) + "px");
       ticking = false;
     });
   }
@@ -120,8 +119,8 @@
     });
   });
 
-  // Tilt on screenshots
-  document.querySelectorAll(".shot img").forEach(function (img) {
+  // Tilt on the step screenshots only; the hero photo stays still
+  document.querySelectorAll(".step .shot img").forEach(function (img) {
     img.addEventListener("mousemove", function (e) {
       var r = img.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width - 0.5;
