@@ -25,14 +25,15 @@
 @keyframes drift { to { transform: translate(60px, 40px) scale(1.15); } }
 .phone-wrap { transform: translateY(var(--py, 0px)); }
 
-/* Floating hero elements */
+/* Floating hero elements: kept in the empty sky area so they never cover the app buttons */
 .hero-shot { animation: bob 6s ease-in-out infinite; }
 @keyframes bob {
   0%, 100% { transform: rotate(3deg) translateY(0); }
   50% { transform: rotate(1.5deg) translateY(-14px); }
 }
-.floating.a { animation: bob2 5s ease-in-out infinite; }
-.floating.b { right: 60px; animation: bob2 6s ease-in-out -2s infinite; }
+.floating { z-index: 2; }
+.floating.a { top: 70px; left: 0; animation: bob2 5s ease-in-out infinite; }
+.floating.b { top: 140px; bottom: auto; right: 30px; animation: bob2 6s ease-in-out -2s infinite; }
 @keyframes bob2 { 50% { transform: translateY(-10px); } }
 .tick { display: inline-block; min-width: 200px; }
 .tick.swap { animation: tickIn .5s ease; }
