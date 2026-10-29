@@ -36,6 +36,67 @@
     });
   }
 
+  // Beach volleyball: a ball is batted between the two players' hands; tap the photo to spike it
+  var shot = document.querySelector(".hero-shot");
+  if (shot && shot.animate) {
+    var layer = document.createElement("div");
+    layer.className = "vb";
+    layer.setAttribute("aria-hidden", "true");
+    var patch = document.createElement("span");
+    patch.className = "vb-patch";
+    var ball = document.createElement("span");
+    ball.className = "vb-ball";
+    layer.appendChild(patch);
+    layer.appendChild(ball);
+    shot.appendChild(layer);
+    shot.classList.add("playable");
+
+    function f(x, y, rot, extra) {
+      var k = { left: x + "%", top: y + "%", transform: "translate(-50%,-50%) rotate(" + rot + "deg)" };
+      for (var p in extra) k[p] = extra[p];
+      return k;
+    }
+
+    var rally = ball.animate([
+      f(59.5, 45, 0, { offset: 0 }),
+      f(59.5, 37, 120, { offset: 0.25 }),
+      f(57.4, 45.4, 240, { offset: 0.45 }),
+      f(58.6, 40.5, 360, { offset: 0.65 }),
+      f(61.6, 45.6, 480, { offset: 0.85 }),
+      f(59.5, 45, 600, { offset: 1 })
+    ], { duration: 3200, iterations: Infinity, easing: "ease-in-out" });
+
+    var hits = 0, busy = false;
+    shot.addEventListener("click", function () {
+      if (busy) return;
+      busy = true;
+      rally.pause();
+      var spike = ball.animate([
+        f(59.5, 45, 0, { offset: 0 }),
+        f(61, 28, 200, { offset: 0.28, easing: "ease-in" }),
+        f(78, 66, 520, { offset: 0.62, easing: "ease-out" }),
+        f(83, 60, 640, { offset: 0.76, easing: "ease-in" }),
+        f(88, 67, 820, { offset: 0.9 }),
+        f(90, 67, 900, { offset: 1, opacity: 0 })
+      ], { duration: 1700, easing: "ease-in" });
+      setTimeout(function () {
+        hits += 1;
+        var pop = document.createElement("span");
+        pop.className = "vb-pop";
+        pop.textContent = "\uD83C\uDFD0 \u00d7" + hits;
+        pop.style.left = "76%";
+        pop.style.top = "62%";
+        layer.appendChild(pop);
+        pop.animate([{ opacity: 1, transform: "translate(-50%,-50%)" }, { opacity: 0, transform: "translate(-50%,-190%)" }], { duration: 1000, easing: "ease-out" }).onfinish = function () { pop.remove(); };
+      }, 1000);
+      spike.onfinish = function () {
+        ball.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+        rally.play();
+        busy = false;
+      };
+    });
+  }
+
   // Sports marquee; built before script.js runs so the clones are translated too
   var wrap = document.querySelector(".sports .wrap");
   if (wrap) {
@@ -120,8 +181,8 @@
     });
   });
 
-  // Tilt on screenshots
-  document.querySelectorAll(".shot img").forEach(function (img) {
+  // Tilt on the step screenshots (not the hero photo, whose ball overlay must stay aligned)
+  document.querySelectorAll(".step .shot img").forEach(function (img) {
     img.addEventListener("mousemove", function (e) {
       var r = img.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width - 0.5;
