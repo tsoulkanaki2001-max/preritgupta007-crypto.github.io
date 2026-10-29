@@ -20,6 +20,7 @@
   <meta name="twitter:card" content="summary" />
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="anim.css" />
 
   <script type="application/ld+json">
   {
@@ -82,7 +83,7 @@
 
         <div class="phone-wrap">
           <div class="floating a" aria-hidden="true"><span class="dot"></span><span data-i18n="float1">3 shared sports</span></div>
-          <div class="floating b" aria-hidden="true"><span class="dot"></span><span data-i18n="float2">Game tonight · 2 spots left</span></div>
+          <div class="floating b" aria-hidden="true"><span class="dot"></span><span class="tick" id="tick">Football · tonight 20:30 · 2 spots left</span></div>
           <figure class="shot hero-shot">
             <img src="img/welcome.jpg" alt="Athlomate welcome screen with beach volleyball players" width="735" height="1494" fetchpriority="high" />
           </figure>
@@ -202,6 +203,7 @@
     </div>
   </footer>
 
+  <script src="anim.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
